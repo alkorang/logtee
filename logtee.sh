@@ -1,5 +1,7 @@
 #!/bin/bash
 ##
+## Visit https://github.com/alkorang/logtee for license and more.
+##
 ## `logtee.sh` uses `tee` command to redirect all stdout, stderr
 ## to the terminal and a log file.
 ## Put `source logtee.sh` or `. logtee.sh` to include this script.
