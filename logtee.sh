@@ -27,9 +27,39 @@ touch "${__LOGPATH}" || exit "${?}"
 ## Redirect stdout/stderr to the log file 
 exec &> >(tee -a "${__LOGPATH}")
 
-## Done, print date and __LOGPATH
+__logtee_begin()
+{
+## begin, print date and __LOGPATH
 echo ""
+echo "logtee begin"
 date
 echo "logtee output: ${__LOGPATH}"
 echo ""
+}
+
+__logtee_trap_err()
+{
+## trap ERR, print error code, date, and __LOGPATH
+__LOGTEEERR="${?}"
+echo ""
+echo "logtee catched error(${__LOGTEEERR})"
+date
+echo "logtee output: ${__LOGPATH}"
+echo ""
+}
+
+__logtee_trap_exit()
+{
+## trap EXIT, print exit code, date, and __LOGPATH
+__LOGTEEERR="${?}"
+echo ""
+echo "logtee exit(${__LOGTEEERR})"
+date
+echo "logtee output: ${__LOGPATH}"
+echo ""
+}
+
+__logtee_begin
+trap __logtee_trap_err ERR
+trap __logtee_trap_exit EXIT
 
