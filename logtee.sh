@@ -11,12 +11,25 @@
 ## If LOGTEEPATH env is empty, `logtee.sh` uses the name same as the running
 ## bash script with `.log` extension, e.g., `run.log` for `run`, `run.sh`
 ##
+
+if [ -z "${LOGTEEDATEFORMAT}" ]
+then
+    LOGTEEDATEFORMAT="+.%Y%m%d_%H%M%S_%z"
+fi
+
 if [ -z "${LOGTEEPATH}" ]
 then
-    ## __RUNNAME= name of the bash script file 
+    ## __RUNNAME = name of the bash script file
     readonly __RUNNAME="$(basename "${0}")"
+    ## __DATETIME = date and time when script started
+    readonly __DATETIME="$(date "${LOGTEEDATEFORMAT}")"
     ## __LOGNAME = log file name
-    readonly __LOGNAME="${__RUNNAME%.*}.log"
+    if [ -z "${__DATETIME}" ]
+    then
+        readonly __LOGNAME="${__RUNNAME%.*}.log"
+    else
+        readonly __LOGNAME="${__RUNNAME%.*}.${__DATETIME}.log"
+    fi
     ## __LOGPATH = absolute log file path
     readonly __LOGPATH="$(realpath "${__LOGNAME}")"
 else

@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# DEBUG: (un)comment for testing
-set -e
-
 source ./logtee.sh
 
-echo "example begin"
+# DEBUG: (un)comment for testing
+#echo "set -e" && set -e
+
+echo "==== example begin ===="
 sleep 3
 
 # DEBUG: (un)comment for testing
-false
+#echo "TEST error(1)" && false
 
 # DEBUG: (un)comment for testing
-exit 1
+#echo "TEST exit(2)" && exit 2
 
-echo "example end"
+echo "==== example end ===="
 
