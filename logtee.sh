@@ -14,7 +14,7 @@
 
 if [ -z "${LOGTEEDATEFORMAT}" ]
 then
-    LOGTEEDATEFORMAT="+.%Y%m%d_%H%M%S_%z"
+    LOGTEEDATEFORMAT="+%Y%m%d_%H%M%S_%z"
 fi
 
 if [ -z "${LOGTEEPATH}" ]
