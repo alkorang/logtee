@@ -3,6 +3,8 @@
 `logtee.sh` uses `tee` command to redirect all stdout, stderr to the terminal and a log file.
 `logtee.sh` uses `date` command to generate date_time_zone and add it to the log file name.
 
+CAUTION: Current `logtee.sh` does not work well with a program that requires user input from stdin.
+
 Put `source logtee.sh` or `. logtee.sh` to include this script.
 ```bash
 #!/bin/bash
