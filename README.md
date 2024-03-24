@@ -13,7 +13,10 @@ echo "log this message"
 echo "log in stderr" >&2
 ```
 
-To override the log file path, set LOGTEEPATH env.
+If `LOGTEEPATH` env is empty, `logtee.sh` uses the name same as the running bash script with `.log` extension, e.g., `run.log` for `run` and `run.sh` files.
+If `LOGTEEDATEFORMAT` env is empty, `logtee.sh` uses `"+%Y%m%d_%H%M%S_%z"` for `date` command. If you do not want to add date/time in the log file name, use `LOGTEEDATEFORMAT="+"` env.
+
+To override the log file path and date/time format, set `LOGTEEPATH` and `LOGTEEDATEFORMAT` env vars.
 
 In the script file:
 ```bash
@@ -29,7 +32,3 @@ In the command line:
 ```bash
 $ LOGTEEPATH=/path/to/file.log LOGTEEDATEFORMAT="+%F" ./run.sh
 ```
-
-If `LOGTEEPATH` env is empty, `logtee.sh` uses the name same as the running bash script with `.log` extension, e.g., `run.log` for `run`, `run.sh`
-If `LOGTEEDATEFORMAT` env is empty, `logtee.sh` uses `"+%Y%m%d_%H%M%S_%z"` for `date` command. If you do not want to add date/time in the log file name, use `LOGTEEDATEFORMAT="+"`
-
